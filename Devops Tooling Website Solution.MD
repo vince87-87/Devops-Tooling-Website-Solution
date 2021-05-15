@@ -11,33 +11,41 @@
 
 ![image](https://user-images.githubusercontent.com/49937302/118361608-c8127a80-b5be-11eb-95f8-2c5138c09bae.png)
 
+![image](https://user-images.githubusercontent.com/49937302/118361615-cd6fc500-b5be-11eb-9667-cea28321e440.png)
 
 # Create partition for all 3 volumes using gdisk
 
-![image](https://user-images.githubusercontent.com/49937302/118361615-cd6fc500-b5be-11eb-9667-cea28321e440.png)
+![image](https://user-images.githubusercontent.com/49937302/118361660-09a32580-b5bf-11eb-8a2e-d1761be6cc87.png)
 
 
 # Install LVM2 & Create 3 pv & volume group nfsdata
 
+![image](https://user-images.githubusercontent.com/49937302/118361665-0f007000-b5bf-11eb-86fe-463a42e22be7.png)
 
 
 # create 3 logical volume-> opt , apps , logs verify lv created
 
-
+![image](https://user-images.githubusercontent.com/49937302/118361673-132c8d80-b5bf-11eb-91e1-988fdd99ce72.png)
 
 
 # format physical volume to xfs filesystem
 
+![image](https://user-images.githubusercontent.com/49937302/118361677-19bb0500-b5bf-11eb-9355-cb0610b939cb.png)
+
 
 # create 3 directory used in web server , Jenkins & mount lv to the directory
 
+![image](https://user-images.githubusercontent.com/49937302/118361684-1de72280-b5bf-11eb-959c-4b0cda9214ad.png)
 
 
 # update fstab to persist mount after reboot
 
+![image](https://user-images.githubusercontent.com/49937302/118361692-23dd0380-b5bf-11eb-8fc6-36b1c0a8b432.png)
+
 
 # test configuration & reload daemon
 
+![image](https://user-images.githubusercontent.com/49937302/118361696-28092100-b5bf-11eb-8c5a-e3ac0a862823.png)
 
 # Update repo & Install nfs
 
@@ -47,9 +55,14 @@ sudo systemctl start nfs-server
 sudo systemctl enable nfs-server
 sudo systemctl status nfs-server
 
+![image](https://user-images.githubusercontent.com/49937302/118361702-2d666b80-b5bf-11eb-9d81-87d5cbcfc47f.png)
+
 
 # take note of the subnet id
 
+![image](https://user-images.githubusercontent.com/49937302/118361706-322b1f80-b5bf-11eb-9065-3c61e7895997.png)
+
+![image](https://user-images.githubusercontent.com/49937302/118361707-35bea680-b5bf-11eb-8cc7-5dd220a5a750.png)
 
 
 
@@ -65,6 +78,7 @@ sudo chmod -R 777 /mnt/opt
 
 sudo systemctl restart nfs-server
 
+![image](https://user-images.githubusercontent.com/49937302/118361714-3a835a80-b5bf-11eb-9262-b95f6185b650.png)
 
 
 
@@ -83,23 +97,27 @@ create /etc/exports
 
 Exportfs -arv # -a export all directories , -r reexport all directories , -v verbose
 
+![image](https://user-images.githubusercontent.com/49937302/118361758-60a8fa80-b5bf-11eb-9abd-3bea97f27ad8.png)
 
 
 # Allow tcp/udp 2049 & 111 on security group attached to nfs server
 
 
 
+![image](https://user-images.githubusercontent.com/49937302/118361774-6ef71680-b5bf-11eb-9aba-5e13419d4d82.png)
 
 
 
 
 # Setup & Configure Database
-
 # provision ec2 install for database server using RHEL
+
+![image](https://user-images.githubusercontent.com/49937302/118361781-73bbca80-b5bf-11eb-962c-ccc60a4b3756.png)
 
 # update repo & install mysql
 
 
+![image](https://user-images.githubusercontent.com/49937302/118361799-87673100-b5bf-11eb-91ba-d36d027908f8.png)
 
 
 
@@ -114,21 +132,37 @@ SHOW DATABASES;
 Exit
 
 
+![image](https://user-images.githubusercontent.com/49937302/118361809-8d5d1200-b5bf-11eb-81e3-d25495f7936f.png)
+
+
 # Setup Web Servers
 # Provision Web Server with RHEL
 
+![image](https://user-images.githubusercontent.com/49937302/118361819-95b54d00-b5bf-11eb-83eb-8bfe139d51ac.png)
+
+
 # install nfs client
 sudo yum install nfs-utils nfs4-acl-tools -y
+
+![image](https://user-images.githubusercontent.com/49937302/118361826-9a7a0100-b5bf-11eb-866a-cecb2e9ca384.png)
+
 
 # Create directory /var/www/ and target the NFS server’s export for apps
 Sudo mkdir /var/www
 sudo mount -t nfs -o rw,nosuid 172.31.26.62:/mnt/apps /var/www
 df -h
 
+![image](https://user-images.githubusercontent.com/49937302/118361833-9fd74b80-b5bf-11eb-9294-0bc704bc899d.png)
+
+
 # mount nfs on /etc/fstab to persist after reboot
+
+![image](https://user-images.githubusercontent.com/49937302/118361840-ab2a7700-b5bf-11eb-8fb7-bd5e86569802.png)
 
 # Install Apache & start apache service
 sudo yum install httpd -y
+
+![image](https://user-images.githubusercontent.com/49937302/118361844-b2ea1b80-b5bf-11eb-8906-867c4bee910d.png)
 
 
 # Provision Another 2 web servers 
@@ -139,21 +173,33 @@ Create directory /var/www/ and target the NFS server’s export for apps
 mount nfs on /etc/fstab to persist after reboot
 install apache & start apache service
 
+![image](https://user-images.githubusercontent.com/49937302/118361852-baa9c000-b5bf-11eb-880d-c99e4a0f6e86.png)
 
 
 
 
 # verify nfs is mounted on all 3 web server by create a test file on /var/www 
 
+![image](https://user-images.githubusercontent.com/49937302/118361859-c1d0ce00-b5bf-11eb-8732-99f3961c671f.png)
+
+![image](https://user-images.githubusercontent.com/49937302/118361872-cd23f980-b5bf-11eb-8815-d80fe507a31d.png)
+
+![image](https://user-images.githubusercontent.com/49937302/118361874-d0b78080-b5bf-11eb-87f3-312e9f19ed11.png)
 
 
 # mount /var/log/httpd to export nfs /mnt/logs to each web server
 
+![image](https://user-images.githubusercontent.com/49937302/118361893-df9e3300-b5bf-11eb-81fe-6d429096aab2.png)
+
 # update my function.php
 
+![image](https://user-images.githubusercontent.com/49937302/118361900-e3ca5080-b5bf-11eb-875f-1572414633e2.png)
 
 
 # use tooling database
+
+![image](https://user-images.githubusercontent.com/49937302/118361906-e9c03180-b5bf-11eb-881e-fd025effcc3b.png)
+
 
 # update security group of database server to allow security group of web server to access & Apply tooling-db.sql script.
 Sudo yum install mysql-server -y
@@ -163,6 +209,12 @@ sudo chown -R apache:apache /var/www/html
 sudo setsebool -P httpd_can_network_connect=1
 sudo setsebool -P httpd_use_nfs 1
 sudo mysql -h 172.31.29.162 -u webaccess -p tooling < tooling-db.sql
+
+![image](https://user-images.githubusercontent.com/49937302/118361914-ef1d7c00-b5bf-11eb-9137-ed236b93813e.png)
+
+![image](https://user-images.githubusercontent.com/49937302/118361924-f2186c80-b5bf-11eb-8709-7d7454b5a1b3.png)
+
+![image](https://user-images.githubusercontent.com/49937302/118361931-f6448a00-b5bf-11eb-9c64-a298f4278b57.png)
 
 
 # Setup php
@@ -179,12 +231,18 @@ sudo systemctl status php-fpm
 setsebool -P httpd_execmem 1
 sudo systemctl restart httpd
 
+
+![image](https://user-images.githubusercontent.com/49937302/118361939-fba1d480-b5bf-11eb-82a4-04b3b881e652.png)
+
+
 # browse to web browser
 http://ec2-18-139-160-98.ap-southeast-1.compute.amazonaws.com/login.php
 
+![image](https://user-images.githubusercontent.com/49937302/118361946-ffcdf200-b5bf-11eb-910f-7ce874353cb6.png)
 
 # verify you are able to login successfully
 
+![image](https://user-images.githubusercontent.com/49937302/118361948-03617900-b5c0-11eb-82fd-7960c07c64c4.png)
 
 
 
