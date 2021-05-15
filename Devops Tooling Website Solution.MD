@@ -50,9 +50,13 @@
 # Update repo & Install nfs
 
 sudo yum -y update
+
 sudo yum install nfs-utils -y
+
 sudo systemctl start nfs-server
+
 sudo systemctl enable nfs-server
+
 sudo systemctl status nfs-server
 
 ![image](https://user-images.githubusercontent.com/49937302/118361702-2d666b80-b5bf-11eb-9d81-87d5cbcfc47f.png)
@@ -69,11 +73,15 @@ sudo systemctl status nfs-server
 # setup permission on the 3 mount directory to allow web servers to rwx 
 
 sudo chown -R nobody: /mnt/apps
+
 sudo chown -R nobody: /mnt/logs
+
 sudo chown -R nobody: /mnt/opt
 
 sudo chmod -R 777 /mnt/apps
+
 sudo chmod -R 777 /mnt/logs
+
 sudo chmod -R 777 /mnt/opt
 
 sudo systemctl restart nfs-server
@@ -91,8 +99,11 @@ sudo systemctl restart nfs-server
 # configure access for remote nfs mount, check port used by nfs
 
 create /etc/exports
+
 /mnt/apps 172.31.16.0/255.255.240.0(rw,sync,no_all_squash,no_root_squash)
+
 /mnt/logs 172.31.16.0/255.255.240.0(rw,sync,no_all_squash,no_root_squash)
+
 /mnt/opt 172.31.16.0/255.255.240.0(rw,sync,no_all_squash,no_root_squash)
 
 Exportfs -arv # -a export all directories , -r reexport all directories , -v verbose
@@ -110,6 +121,7 @@ Exportfs -arv # -a export all directories , -r reexport all directories , -v ver
 
 
 # Setup & Configure Database
+
 # provision ec2 install for database server using RHEL
 
 ![image](https://user-images.githubusercontent.com/49937302/118361781-73bbca80-b5bf-11eb-962c-ccc60a4b3756.png)
@@ -124,11 +136,17 @@ Exportfs -arv # -a export all directories , -r reexport all directories , -v ver
 
 # start & configure mysql
 sudo mysql
+
 CREATE DATABASE tooling;
+
 CREATE USER `webaccess`@`172.31.16.0/255.255.240.0` IDENTIFIED BY 'WeBa44e$$@123';
+
 GRANT ALL ON tooling.* TO 'webaccess'@'172.31.16.0/255.255.240.0';
+
 FLUSH PRIVILEGES;
+
 SHOW DATABASES;
+
 Exit
 
 
@@ -149,8 +167,11 @@ sudo yum install nfs-utils nfs4-acl-tools -y
 
 # Create directory /var/www/ and target the NFS server’s export for apps
 Sudo mkdir /var/www
+
 sudo mount -t nfs -o rw,nosuid 172.31.26.62:/mnt/apps /var/www
+
 df -h
+
 
 ![image](https://user-images.githubusercontent.com/49937302/118361833-9fd74b80-b5bf-11eb-9294-0bc704bc899d.png)
 
@@ -160,7 +181,9 @@ df -h
 ![image](https://user-images.githubusercontent.com/49937302/118361840-ab2a7700-b5bf-11eb-8fb7-bd5e86569802.png)
 
 # Install Apache & start apache service
+
 sudo yum install httpd -y
+
 
 ![image](https://user-images.githubusercontent.com/49937302/118361844-b2ea1b80-b5bf-11eb-8906-867c4bee910d.png)
 
@@ -169,8 +192,11 @@ sudo yum install httpd -y
 
 # Do the same for another 2 web servers 
 sudo yum install nfs-utils nfs4-acl-tools -y
+
 Create directory /var/www/ and target the NFS server’s export for apps
+
 mount nfs on /etc/fstab to persist after reboot
+
 install apache & start apache service
 
 ![image](https://user-images.githubusercontent.com/49937302/118361852-baa9c000-b5bf-11eb-880d-c99e4a0f6e86.png)
@@ -202,13 +228,20 @@ install apache & start apache service
 
 
 # update security group of database server to allow security group of web server to access & Apply tooling-db.sql script.
+
 Sudo yum install mysql-server -y
+
 # configure SELINUX policies
 sudo chown -R apache:apache /var/www/html
+
 #change file selinux security contest
+
 sudo setsebool -P httpd_can_network_connect=1
+
 sudo setsebool -P httpd_use_nfs 1
+
 sudo mysql -h 172.31.29.162 -u webaccess -p tooling < tooling-db.sql
+
 
 ![image](https://user-images.githubusercontent.com/49937302/118361914-ef1d7c00-b5bf-11eb-9137-ed236b93813e.png)
 
@@ -219,16 +252,27 @@ sudo mysql -h 172.31.29.162 -u webaccess -p tooling < tooling-db.sql
 
 # Setup php
 sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+
 sudo dnf install dnf-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
+
 sudo dnf module list php
+
 sudo dnf module reset php
+
 sudo dnf module enable php:remi-7.4
+
 sudo dnf install php php-opcache php-gd php-curl php-mysqlnd
+
 php -v
+
 sudo systemctl start php-fpm
+
 sudo systemctl enable php-fpm
+
 sudo systemctl status php-fpm
+
 setsebool -P httpd_execmem 1
+
 sudo systemctl restart httpd
 
 
