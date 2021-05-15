@@ -159,12 +159,14 @@ install apache & start apache service
 # update security group of database server to allow security group of web server to access & Apply tooling-db.sql script.
 Sudo yum install mysql-server -y
 # configure SELINUX policies
-sudo chown -R apache:apache /var/www/html/wordpress
+sudo chown -R apache:apache /var/www/html
 #change file selinux security contest
 sudo setsebool -P httpd_can_network_connect=1
+sudo setsebool -P httpd_use_nfs 1
 sudo mysql -h 172.31.29.162 -u webaccess -p tooling < tooling-db.sql
 
 
+# Setup php
 sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 sudo dnf install dnf-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
 sudo dnf module list php
@@ -178,6 +180,11 @@ sudo systemctl status php-fpm
 setsebool -P httpd_execmem 1
 sudo systemctl restart httpd
 
+# browse to web browser
+http://ec2-18-139-160-98.ap-southeast-1.compute.amazonaws.com/login.php
+
+
+# verify you are able to login successfully
 
 
 
