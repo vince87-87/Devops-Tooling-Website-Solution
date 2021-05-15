@@ -4,18 +4,17 @@
 
 # Provision NFS Storage Server Using RHEL
 
+![image](https://user-images.githubusercontent.com/49937302/118361600-c34dc680-b5be-11eb-86dc-d0898f0106c6.png)
 
 
 # Provision 3 ebs volume and attached each volume to nfs server
 
-
+![image](https://user-images.githubusercontent.com/49937302/118361608-c8127a80-b5be-11eb-95f8-2c5138c09bae.png)
 
 
 # Create partition for all 3 volumes using gdisk
 
-
-
-
+![image](https://user-images.githubusercontent.com/49937302/118361615-cd6fc500-b5be-11eb-9667-cea28321e440.png)
 
 
 # Install LVM2 & Create 3 pv & volume group nfsdata
@@ -121,7 +120,7 @@ Exit
 # install nfs client
 sudo yum install nfs-utils nfs4-acl-tools -y
 
-# Create directory /var/www/ and target the NFS server’s export for apps
+# Create directoryÂ /var/www/Â and target the NFS serverâ€™s export for apps
 Sudo mkdir /var/www
 sudo mount -t nfs -o rw,nosuid 172.31.26.62:/mnt/apps /var/www
 df -h
@@ -136,7 +135,7 @@ sudo yum install httpd -y
 
 # Do the same for another 2 web servers 
 sudo yum install nfs-utils nfs4-acl-tools -y
-Create directory /var/www/ and target the NFS server’s export for apps
+Create directoryÂ /var/www/Â and target the NFS serverâ€™s export for apps
 mount nfs on /etc/fstab to persist after reboot
 install apache & start apache service
 
@@ -156,7 +155,7 @@ install apache & start apache service
 
 # use tooling database
 
-# update security group of database server to allow security group of web server to access & Apply tooling-db.sql script.
+# update security group of database server to allow security group of web server to access & ApplyÂ tooling-db.sqlÂ script.
 Sudo yum install mysql-server -y
 # configure SELINUX policies
 sudo chown -R apache:apache /var/www/html
