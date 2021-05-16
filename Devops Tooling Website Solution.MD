@@ -252,9 +252,6 @@ sudo setsebool -P httpd_use_nfs 1
 
 sudo setsebool -P httpd_can_network_connect_db 1
 
-sudo mysql -h 172.31.29.162 -u webaccess -p tooling < tooling-db.sql
-
-
 ![image](https://user-images.githubusercontent.com/49937302/118361924-f2186c80-b5bf-11eb-8709-7d7454b5a1b3.png)
 
 
