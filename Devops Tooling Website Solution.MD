@@ -217,7 +217,7 @@ install apache & start apache service
 
 # update my function.php
 
-![image](https://user-images.githubusercontent.com/49937302/118361900-e3ca5080-b5bf-11eb-875f-1572414633e2.png)
+![image](https://user-images.githubusercontent.com/49937302/118397009-abd91100-b684-11eb-8f0b-e3bb55454880.png)
 
 
 # use tooling database
