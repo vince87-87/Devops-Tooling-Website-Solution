@@ -231,6 +231,14 @@ install apache & start apache service
 
 #  Install mysql on web server & apply tooling-db.sql script
 
+sudo yum install mysql-server -y
+
+cd /home/ec2-user/html/tooling
+
+sudo mysql -h 172.31.29.162 -u webaccess -p tooling < tooling-db.sql
+
+#Enter the password of the webaccess
+
 ![image](https://user-images.githubusercontent.com/49937302/118361931-f6448a00-b5bf-11eb-9c64-a298f4278b57.png)
 
 # configure SELINUX policies
@@ -252,17 +260,17 @@ sudo mysql -h 172.31.29.162 -u webaccess -p tooling < tooling-db.sql
 
 
 # Setup php
-sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm -y
 
-sudo dnf install dnf-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
+sudo dnf install dnf-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
 
 sudo dnf module list php
 
 sudo dnf module reset php
 
-sudo dnf module enable php:remi-7.4
+sudo dnf module enable php:remi-7.4 -y
 
-sudo dnf install php php-opcache php-gd php-curl php-mysqlnd
+sudo dnf install php php-opcache php-gd php-curl php-mysqlnd -y
 
 php -v
 
