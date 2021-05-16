@@ -206,9 +206,9 @@ install apache & start apache service
 
 # verify nfs is mounted on all 3 web server by create a test file on /var/www 
 
-![image](https://user-images.githubusercontent.com/49937302/118361872-cd23f980-b5bf-11eb-8815-d80fe507a31d.png)
+![image](https://user-images.githubusercontent.com/49937302/118396905-39683100-b684-11eb-8c0f-23b44d018226.png)
 
-![image](https://user-images.githubusercontent.com/49937302/118361874-d0b78080-b5bf-11eb-87f3-312e9f19ed11.png)
+![image](https://user-images.githubusercontent.com/49937302/118396909-3e2ce500-b684-11eb-9c8b-03375e2e3482.png)
 
 
 # mount /var/log/httpd to export nfs /mnt/logs to each web server
