@@ -244,7 +244,34 @@ sudo systemctl status httpd
 
 ![image](https://user-images.githubusercontent.com/49937302/118361893-df9e3300-b5bf-11eb-81fe-6d429096aab2.png)
 
+# fork the github to my github account
+
+![image](https://user-images.githubusercontent.com/49937302/118398288-8222e880-b68a-11eb-8858-524a641cb751.png)
+
+#install git
+
+sudo yum install git -y
+
+#clone the repo from my github
+
+git clone https://github.com/vince87-87/tooling.git
+
+#copy html to /var/www/html
+
+cp -r /home/ec2-user/html/tooling/html/. /var/www/html
+
+ls -la /var/www/html
+
+![image](https://user-images.githubusercontent.com/49937302/118398575-d37fa780-b68b-11eb-8cce-966a1217bbac.png)
+
+
 # update my function.php
+
+sudo vi /var/www/html/function.php
+
+#update the db connection 
+
+$db = mysqli_connect('172.31.29.162', 'webaccess', 'WeBa44e$$@123', 'tooling');
 
 ![image](https://user-images.githubusercontent.com/49937302/118397009-abd91100-b684-11eb-8f0b-e3bb55454880.png)
 
