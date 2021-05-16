@@ -128,6 +128,9 @@ Exportfs -arv # -a export all directories , -r reexport all directories , -v ver
 
 # update repo & install mysql
 
+sudo yum update -y
+
+sudo yum install mysql-server -y
 
 ![image](https://user-images.githubusercontent.com/49937302/118361799-87673100-b5bf-11eb-91ba-d36d027908f8.png)
 
@@ -191,13 +194,39 @@ sudo yum install httpd -y
 # Provision Another 2 web servers 
 
 # Do the same for another 2 web servers 
+
+#Create directory /var/www/
+
+Sudo mkdir /var/www
+
+#mount the target to the NFS server’s export for apps
+
+sudo mount -t nfs -o rw,nosuid 172.31.26.62:/mnt/apps /var/www
+
+#Install nfs client
 sudo yum install nfs-utils nfs4-acl-tools -y
 
-Create directory /var/www/ and target the NFS server’s export for apps
+#mount nfs on /etc/fstab to persist after reboot
 
-mount nfs on /etc/fstab to persist after reboot
+sudo vi /etc/fstab
 
-install apache & start apache service
+sudo mount -a
+
+sudo systemctl daemon-reload
+
+#add the following:
+
+172.31.26.62:/mnt/apps  /var/www nfs defaults 0 0
+
+#install apache & start apache service
+
+sudo yum install httpd -y
+
+sudo systemctl start httpd
+
+sudo systemctl enable httpd
+
+sudo systemctl status httpd
 
 ![image](https://user-images.githubusercontent.com/49937302/118361852-baa9c000-b5bf-11eb-880d-c99e4a0f6e86.png)
 
@@ -218,11 +247,6 @@ install apache & start apache service
 # update my function.php
 
 ![image](https://user-images.githubusercontent.com/49937302/118397009-abd91100-b684-11eb-8f0b-e3bb55454880.png)
-
-
-# use tooling database
-
-![image](https://user-images.githubusercontent.com/49937302/118361906-e9c03180-b5bf-11eb-881e-fd025effcc3b.png)
 
 
 # update security group of database server to allow security group of web server to access
