@@ -225,9 +225,13 @@ install apache & start apache service
 ![image](https://user-images.githubusercontent.com/49937302/118361906-e9c03180-b5bf-11eb-881e-fd025effcc3b.png)
 
 
-# update security group of database server to allow security group of web server to access & Apply tooling-db.sql script.
+# update security group of database server to allow security group of web server to access
 
-Sudo yum install mysql-server -y
+![image](https://user-images.githubusercontent.com/49937302/118361914-ef1d7c00-b5bf-11eb-9137-ed236b93813e.png)
+
+#  Install mysql on web server & apply tooling-db.sql script
+
+![image](https://user-images.githubusercontent.com/49937302/118361931-f6448a00-b5bf-11eb-9c64-a298f4278b57.png)
 
 # configure SELINUX policies
 sudo chown -R apache:apache /var/www/html
@@ -238,14 +242,13 @@ sudo setsebool -P httpd_can_network_connect=1
 
 sudo setsebool -P httpd_use_nfs 1
 
+sudo setsebool -P httpd_can_network_connect_db 1
+
 sudo mysql -h 172.31.29.162 -u webaccess -p tooling < tooling-db.sql
 
 
-![image](https://user-images.githubusercontent.com/49937302/118361914-ef1d7c00-b5bf-11eb-9137-ed236b93813e.png)
-
 ![image](https://user-images.githubusercontent.com/49937302/118361924-f2186c80-b5bf-11eb-8709-7d7454b5a1b3.png)
 
-![image](https://user-images.githubusercontent.com/49937302/118361931-f6448a00-b5bf-11eb-9c64-a298f4278b57.png)
 
 
 # Setup php
