@@ -62,7 +62,7 @@ sudo systemctl status nfs-server
 ![image](https://user-images.githubusercontent.com/49937302/118361702-2d666b80-b5bf-11eb-9d81-87d5cbcfc47f.png)
 
 
-# take note of the subnet id
+# take note of the subnet 
 
 ![image](https://user-images.githubusercontent.com/49937302/118361706-322b1f80-b5bf-11eb-9065-3c61e7895997.png)
 
@@ -201,12 +201,10 @@ install apache & start apache service
 
 ![image](https://user-images.githubusercontent.com/49937302/118361852-baa9c000-b5bf-11eb-880d-c99e4a0f6e86.png)
 
-
+![image](https://user-images.githubusercontent.com/49937302/118361859-c1d0ce00-b5bf-11eb-8732-99f3961c671f.png)
 
 
 # verify nfs is mounted on all 3 web server by create a test file on /var/www 
-
-![image](https://user-images.githubusercontent.com/49937302/118361859-c1d0ce00-b5bf-11eb-8732-99f3961c671f.png)
 
 ![image](https://user-images.githubusercontent.com/49937302/118361872-cd23f980-b5bf-11eb-8815-d80fe507a31d.png)
 
