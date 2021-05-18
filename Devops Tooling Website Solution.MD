@@ -297,9 +297,15 @@ sudo chown -R apache:apache /var/www/html
 
 #change file selinux security contest
 
+#allow httpd/apache2 to make network connections.
+
 sudo setsebool -P httpd_can_network_connect=1
 
+#allow httpd to use nfs
+
 sudo setsebool -P httpd_use_nfs 1
+
+#allows Apache HTTP Server scripts and modules to connect to database servers.
 
 sudo setsebool -P httpd_can_network_connect_db 1
 
