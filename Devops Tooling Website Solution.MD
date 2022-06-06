@@ -146,7 +146,7 @@ sudo mysql
 
 CREATE DATABASE tooling;
 
-CREATE USER `webaccess`@`172.31.16.0/255.255.240.0` IDENTIFIED BY 'WeBa44e$$@123';
+CREATE USER 'webaccess'@'172.31.16.0/255.255.240.0' IDENTIFIED BY 'WeBa44e$$@123';
 
 GRANT ALL ON tooling.* TO 'webaccess'@'172.31.16.0/255.255.240.0';
 
