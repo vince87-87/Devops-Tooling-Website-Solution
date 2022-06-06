@@ -98,7 +98,7 @@ sudo systemctl restart nfs-server
 
 # configure access for remote nfs mount, check port used by nfs
 
-create /etc/exports
+vi /etc/exports
 
 /mnt/apps 172.31.16.0/255.255.240.0(rw,sync,no_all_squash,no_root_squash)
 
@@ -106,7 +106,9 @@ create /etc/exports
 
 /mnt/opt 172.31.16.0/255.255.240.0(rw,sync,no_all_squash,no_root_squash)
 
-Exportfs -arv # -a export all directories , -r reexport all directories , -v verbose
+# -a export all directories , -r reexport all directories , -v verbose
+
+Exportfs -arv 
 
 ![image](https://user-images.githubusercontent.com/49937302/118361758-60a8fa80-b5bf-11eb-9abd-3bea97f27ad8.png)
 
@@ -131,6 +133,8 @@ Exportfs -arv # -a export all directories , -r reexport all directories , -v ver
 sudo yum update -y
 
 sudo yum install mysql-server -y
+
+sudo systemctl restart mysqld
 
 ![image](https://user-images.githubusercontent.com/49937302/118361799-87673100-b5bf-11eb-91ba-d36d027908f8.png)
 
