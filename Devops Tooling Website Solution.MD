@@ -338,7 +338,7 @@ sudo systemctl enable php-fpm
 
 sudo systemctl status php-fpm
 
-setsebool -P httpd_execmem 1
+sudo setsebool -P httpd_execmem 1
 
 sudo systemctl restart httpd
 
