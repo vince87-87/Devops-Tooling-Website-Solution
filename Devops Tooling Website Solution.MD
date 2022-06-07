@@ -326,7 +326,7 @@ sudo dnf module list php
 
 sudo dnf module reset php
 
-sudo dnf module enable php:remi-7.4 -y
+sudo dnf module enable php:remi-8.0 -y
 
 sudo dnf install php php-opcache php-gd php-curl php-mysqlnd -y
 
